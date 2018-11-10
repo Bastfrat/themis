@@ -1,7 +1,7 @@
 package model;
 
 public class MixerV2140D {
-	
+
 	private double gain1dB;
 	private double gain2dB;
 	private double gain3dB;
@@ -31,5 +31,5 @@ public class MixerV2140D {
 	public void setGain4dB(double gain4dB) {
 		this.gain4dB = gain4dB;
 	}
-
+	
 }

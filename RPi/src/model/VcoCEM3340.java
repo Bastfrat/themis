@@ -1,7 +1,7 @@
 package model;
 
-public class VcoCEM3340 extends Vco {
-	
+public class VcoCEM3340 extends Vco{
+
 	enum WaveShape {
 		
 		SQUARE,
