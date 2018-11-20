@@ -38,7 +38,7 @@ public class Main extends Application {
 	}
 	@Override
 	public void start(Stage window) throws Exception {
-		
+		//Test
 		//Node n = PerformancePad.getView();
 		//Node n1 = PushButton();
 		int width=4;
