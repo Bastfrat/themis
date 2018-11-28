@@ -1,8 +1,11 @@
 package model;
 
-import controller.FrontPane;
-import controller.PerformancePad;
-import controller.component.PushButton;
+import java.util.*;
+
+//import controller.FrontPane;
+//import controller.PerformancePad;
+//import controller.component.Control;
+//import controller.component.PushButton;
 import controller.event.PushButtonActionEvent;
 import controller.event.PushButtonActionListener;
 
@@ -11,32 +14,43 @@ import controller.event.PushButtonActionListener;
  * @author Bastien Fratta
  *
  */
-public class Vco implements PushButtonActionListener {
-	protected double detune;
-	protected Octave octave;
+public abstract class Vco implements PushButtonActionListener, SynthParameterProvider {
 	
-	Vco(){
-		octave = Octave.FOUR_INCHES;
-		detune = 0;
-		PushButton pushBut = PerformancePad.getPerformancePadPushButton(5, 4);
+	protected DoubleParameter detune;
+	protected EnumParameter<Octave> octave;
+	protected final List<SynthParameter<?>> parameterList = new ArrayList<SynthParameter<?>>();
+	
+	/**
+	 * 
+	 */
+	public Vco(){
+		detune = new DoubleParameter("VCO Detune");
+		octave = new EnumParameter<Octave>("VCO Octave");
+		parameterList.add(detune);
+		parameterList.add(octave);
+
+		/*PushButton pushBut = PerformancePad.getPerformancePadPushButton(5, 4);
 		pushBut.addPushButtonActionListener(this);
+		*/
+		
 	}
 	
-	public Octave getOctave() { // TODO Sylvain utiliser une enum
+	public EnumParameter<Octave> getOctave() { // TODO Sylvain utiliser une enum
 		return octave;
 	}
 
-	public void setOctave(Octave octave) {
+	public void setOctave(EnumParameter<Octave> octave) {
 		this.octave = octave;
 	}
 	
-	public void setDetune(double detune) {
+	public DoubleParameter getDetune() {
+		return detune;
+	}
+
+	public void setDetune(DoubleParameter detune) {
 		this.detune = detune;
 	}
 	
-	public double getDetune() {
-		return detune;
-	}
 	
 
 	@Override
@@ -46,4 +60,9 @@ public class Vco implements PushButtonActionListener {
 		
 	}
 
+	@Override
+	public List<SynthParameter<?>> getParameters() {		
+		return parameterList;
+	}
+	
 }

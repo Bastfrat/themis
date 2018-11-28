@@ -1,11 +1,16 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MixerV2140D {
 
 	private double gain1dB;
 	private double gain2dB;
 	private double gain3dB;
 	private double gain4dB;
+	protected final List<SynthParameter<?>> parameterList = new ArrayList<SynthParameter<?>>();
+	
 
 	public double getGain1dB() {
 		return gain1dB;
@@ -30,6 +35,9 @@ public class MixerV2140D {
 	}
 	public void setGain4dB(double gain4dB) {
 		this.gain4dB = gain4dB;
+	}
+	public List<SynthParameter<?>> getParameters() {
+		return parameterList;
 	}
 	
 }
