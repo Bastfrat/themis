@@ -2,25 +2,19 @@ package application;
 	
 import javafx.application.Application;
 import javafx.event.*;
-import javafx.event.EventHandler;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-//import javafx.application.Preloader;
-import javafx.stage.Stage;
-import javafx.stage.Window;
 import javafx.scene.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-//import javafx.scene.shape.*;
-import javafx.scene.text.*;
-import javafx.scene.image.*;
-import javafx.scene.input.*;
 import view.*;
 import model.*;
+import javafx.geometry.Insets;
+//import javafx.geometry.Pos;
+//import javafx.application.Preloader;
+import javafx.stage.Stage;
+//import javafx.stage.Window;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import java.util.*;
-
-import controller.*;
 import controller.component.Control;
 
 /*
@@ -41,76 +35,147 @@ public class Main extends Application {
 	public void start(Stage window) throws Exception {
 	
         GridPane layout = new GridPane();
+        layout.setStyle("-fx-background-color: black;");
         layout.setHgap(10);
         layout.setVgap(10);
-        layout.setPadding(new Insets(0, 10, 0, 10));
-
-        // VCO -> parameters 
+        //layout.setPadding(new Insets(0, 10, 0, 10));
+        
+        BorderPane screen = new BorderPane();
+        screen.setStyle("-fx-border-color : grey");
+        ImageView iv1 = new ImageView(new Image("resources/img/logo.png"));
+        screen.getChildren().add(iv1);
+        
+        GridPane buttonGroup1 = new GridPane();
+        buttonGroup1.setStyle("-fx-background-color: black;"
+        		+"-fx-border-color: magenta;");
+        buttonGroup1.setHgap(10);
+        buttonGroup1.setVgap(10);
+        buttonGroup1.setPadding(new Insets(0, 10, 0, 10));
+        
+        GridPane buttonGroup2 = new GridPane();
+        buttonGroup2.setStyle("-fx-background-color: black;"
+        		+"-fx-border-color: magenta;");
+        buttonGroup2.setHgap(10);
+        buttonGroup2.setVgap(10);
+        buttonGroup2.setPadding(new Insets(0, 10, 0, 10));
+        
+        GridPane buttonGroup3 = new GridPane();
+        buttonGroup3.setStyle("-fx-background-color: black;"
+        		+"-fx-border-color: cyan;");
+        buttonGroup3.setHgap(10);
+        buttonGroup3.setVgap(10);
+        buttonGroup3.setPadding(new Insets(0, 10, 0, 10));
+        
+        GridPane buttonGroup4 = new GridPane();
+        buttonGroup4.setStyle("-fx-background-color: black;"
+        		+"-fx-border-color: yellow;");
+        buttonGroup4.setHgap(10);
+        buttonGroup4.setVgap(10);
+        buttonGroup4.setPadding(new Insets(0, 10, 0, 10));
+        
+        GridPane buttonGroup5 = new GridPane();
+        buttonGroup5.setStyle("-fx-background-color: black;"
+        		+"-fx-border-color: yellow;");
+        buttonGroup5.setHgap(10);
+        buttonGroup5.setVgap(10);
+        buttonGroup5.setPadding(new Insets(0, 10, 0, 10));
+ 
 		VcoCEM3340 vco1 = new VcoCEM3340();
 		VcoLM13700 vco2 = new VcoLM13700();
 		MixerV2140D mixer = new MixerV2140D();
+		VcfCEM3320 vcf = new VcfCEM3320();
+		VcaLM13700 vca = new VcaLM13700();
 		List<SynthParameter<?>> paramsVCO1 = vco1.getParameters();
 		List<SynthParameter<?>> paramsVCO2 = vco2.getParameters();
 		List<SynthParameter<?>> paramsMixer = mixer.getParameters();
+		List<SynthParameter<?>> paramsVcf = vcf.getParameters();
+		List<SynthParameter<?>> paramsVca = vca.getParameters();
 		
-		/*int[] index = {0,1,2};
-		for (int i : index)*/
-		/*
-		String lab = params.get(0).getLabel();
-		System.out.println(lab);
-		Control c = params.get(0).getControl();
-		System.out.print(c);
-		
-		String lab1 = params.get(1).getLabel();
-		System.out.println(lab1);
-		Control c1 = params.get(1).getControl();
-		System.out.print(c1);
-		
-		String lab2 = params.get(2).getLabel();
-		System.out.println(lab2);
-		Control c2 = params.get(2).getControl();
-		System.out.print(c2);*/
 		int i=0;
-		for (SynthParameter p : paramsVCO1) {
+		for (SynthParameter<?> p : paramsVCO1) {
 			i=i+1;
-			//String lbl = p.getLabel();
+			Label title = new Label("VCO1");
+			title.setStyle("-fx-text-fill: magenta;");
 			Label label = new Label(p.getLabel());
+			label.setStyle("-fx-text-fill: lightpink;");
 			Control c = p.getControl();
 			System.out.println(p);
 			Node n = c.getJavaFXView();
-			layout.add(n,i,0);
+			buttonGroup1.add(title,2,0);
+			buttonGroup1.add(n,i,1);
 			//layout.add(lbl,i,1);
-			layout.add(label,i,1);
+			buttonGroup1.add(label,i,2);
 		}
 		i=0;
-		for (SynthParameter p : paramsVCO2) {
+		for (SynthParameter<?> p : paramsVCO2) {
 			i=i+1;
-			//String lbl = p.getLabel();
+			Label title = new Label("VCO2");
+			title.setStyle("-fx-text-fill: magenta;");
 			Label label = new Label(p.getLabel());
+			label.setStyle("-fx-text-fill: lightpink;");
 			Control c = p.getControl();
 			System.out.println(p);
 			Node n = c.getJavaFXView();
-			layout.add(n,i,2);
+			buttonGroup2.add(title,2,0);
+			buttonGroup2.add(n,i,1);
 			//layout.add(lbl,i,1);
-			layout.add(label,i,3);
+			buttonGroup2.add(label,i,2);
 		}
 		i=0;
-		for (SynthParameter p : paramsMixer) {
+		for (SynthParameter<?> p : paramsMixer) {
 			i=i+1;
-			//String lbl = p.getLabel();
+			Label title = new Label("MIXER");
+			title.setStyle("-fx-text-fill: cyan;");
 			Label label = new Label(p.getLabel());
+			label.setStyle("-fx-text-fill: lightblue;");
 			Control c = p.getControl();
 			System.out.println(p);
 			Node n = c.getJavaFXView();
-			layout.add(n,4+i,0);
+			buttonGroup3.add(title,2,0);
+			buttonGroup3.add(n,i,1);
 			//layout.add(lbl,i,1);
-			layout.add(label,4+i,0);
+			buttonGroup3.add(label,i,2);
 		}
-	
+		i=0;
+		for (SynthParameter<?> p : paramsVcf) {
+			i=i+1;
+			Label title = new Label("VCF");
+			title.setStyle("-fx-text-fill: yellow;");
+			Label label = new Label(p.getLabel());
+			label.setStyle("-fx-text-fill: lightyellow;");
+			Control c = p.getControl();
+			System.out.println(p);
+			Node n = c.getJavaFXView();
+			buttonGroup4.add(title,2,0);
+			buttonGroup4.add(n,i,1);
+			//layout.add(lbl,i,1);
+			buttonGroup4.add(label,i,2);
+		}
+		i=0;
+		for (SynthParameter<?> p : paramsVca) {
+			i=i+1;
+			Label title = new Label("VCA");
+			title.setStyle("-fx-text-fill: yellow;");
+			Label label = new Label(p.getLabel());
+			label.setStyle("-fx-text-fill: lightyellow;");
+			Control c = p.getControl();
+			System.out.println(p);
+			Node n = c.getJavaFXView();
+			buttonGroup5.add(title,2,0);
+			buttonGroup5.add(n,i,1);
+			//layout.add(lbl,i,1);
+			buttonGroup5.add(label,i,2);
+		}
+		
+		layout.add(buttonGroup1,0,0);
+		layout.add(buttonGroup2,0,1);
+		layout.add(buttonGroup3,0,2);
+		layout.add(buttonGroup4,1,0);
+		layout.add(buttonGroup5,1,1);
 		Scene s = new Scene(layout, 1280,720);
 		window.setScene(s);
 		window.setTitle("Pulsar");
-		window.setResizable(false);
+		window.setResizable(true);
 		window.show();
 	
 	}

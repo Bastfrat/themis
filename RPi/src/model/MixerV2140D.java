@@ -5,35 +5,45 @@ import java.util.List;
 
 public class MixerV2140D {
 
-	private double gain1dB;
-	private double gain2dB;
-	private double gain3dB;
-	private double gain4dB;
+	private DoubleParameter gain1dB;
+	private DoubleParameter gain2dB;
+	private DoubleParameter gain3dB;
+	private DoubleParameter gain4dB;
 	protected final List<SynthParameter<?>> parameterList = new ArrayList<SynthParameter<?>>();
 	
-
-	public double getGain1dB() {
+	public MixerV2140D(){
+		gain1dB = new DoubleParameter("VCO1 Level");
+		gain2dB = new DoubleParameter("VCO2 Level");
+		gain3dB = new DoubleParameter("Sub Level");
+		gain4dB = new DoubleParameter("VCO Detune");
+		parameterList.add(gain1dB);
+		parameterList.add(gain2dB);
+		parameterList.add(gain3dB);
+		parameterList.add(gain4dB);
+	}
+	
+	public DoubleParameter getGain1dB() {
 		return gain1dB;
 	}
-	public void setGain1dB(double gain1dB) {
+	public void setGain1dB(DoubleParameter gain1dB) {
 		this.gain1dB = gain1dB;
 	}
-	public double getGain2dB() {
+	public DoubleParameter getGain2dB() {
 		return gain2dB;
 	}
-	public void setGain2dB(double gain2dB) {
+	public void setGain2dB(DoubleParameter gain2dB) {
 		this.gain2dB = gain2dB;
 	}
-	public double getGain3dB() {
+	public DoubleParameter getGain3dB() {
 		return gain3dB;
 	}
-	public void setGain3dB(double gain3dB) {
+	public void setGain3dB(DoubleParameter gain3dB) {
 		this.gain3dB = gain3dB;
 	}
-	public double getGain4dB() {
+	public DoubleParameter getGain4dB() {
 		return gain4dB;
 	}
-	public void setGain4dB(double gain4dB) {
+	public void setGain4dB(DoubleParameter gain4dB) {
 		this.gain4dB = gain4dB;
 	}
 	public List<SynthParameter<?>> getParameters() {
