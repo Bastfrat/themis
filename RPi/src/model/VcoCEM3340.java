@@ -18,7 +18,7 @@ public class VcoCEM3340 extends Vco{
 	
 	public VcoCEM3340() {
 		super();
-		shape = new EnumParameter<WaveShape>("WaveShape");
+		shape = new EnumParameter<WaveShape>("Shape");
 		parameterList.add(shape);
 		// TODO : syncFrom13700
 	}

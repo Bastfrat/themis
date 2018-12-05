@@ -10,9 +10,9 @@ public class VcfCEM3320 {
 	
 	public VcfCEM3320() {
 		cutoff = new DoubleParameter("Cutoff");
-		resonance = new DoubleParameter("Resonance");
+		resonance = new DoubleParameter("Reso");
 		kbdTracking = new DoubleParameter("Keyboard");
-		egDepth = new DoubleParameter("EG Depth");
+		egDepth = new DoubleParameter("EG.Depth");
 		parameterList.add(cutoff);
 		parameterList.add(resonance);
 		parameterList.add(kbdTracking);

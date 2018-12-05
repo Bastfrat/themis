@@ -24,8 +24,8 @@ public abstract class Vco implements PushButtonActionListener, SynthParameterPro
 	 * 
 	 */
 	public Vco(){
-		detune = new DoubleParameter("VCO Detune");
-		octave = new EnumParameter<Octave>("VCO Octave");
+		detune = new DoubleParameter("Detune");
+		octave = new EnumParameter<Octave>("Octave");
 		parameterList.add(detune);
 		parameterList.add(octave);
 

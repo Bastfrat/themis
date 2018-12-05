@@ -12,10 +12,10 @@ public class MixerV2140D {
 	protected final List<SynthParameter<?>> parameterList = new ArrayList<SynthParameter<?>>();
 	
 	public MixerV2140D(){
-		gain1dB = new DoubleParameter("VCO1 Level");
-		gain2dB = new DoubleParameter("VCO2 Level");
-		gain3dB = new DoubleParameter("Sub Level");
-		gain4dB = new DoubleParameter("VCO Detune");
+		gain1dB = new DoubleParameter("VCO1");
+		gain2dB = new DoubleParameter("VCO2");
+		gain3dB = new DoubleParameter("Sub");
+		gain4dB = new DoubleParameter("Noize");
 		parameterList.add(gain1dB);
 		parameterList.add(gain2dB);
 		parameterList.add(gain3dB);

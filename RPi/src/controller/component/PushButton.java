@@ -4,6 +4,8 @@ import javax.swing.event.EventListenerList;
 
 import controller.event.PushButtonActionEvent;
 import controller.event.PushButtonActionListener;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
 
 	/**
 	 * a class that represents a push button on the front pane
@@ -49,7 +51,14 @@ public class PushButton {
 	             ((PushButtonActionListener)listeners[i+1]).actionPerformed(e); // TODO (reynal) fire changes on EDT!
 	         }
 	     }
-} 
+	 } 
 
+		//@Override
+		public Node createJavaFXView() {
+
+			Button b = new Button();
+			return b;
+
+	}
 
 }

@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Contains the parameters for an ADSR enveloppe, Attack, Decay, Sustain, Release
@@ -9,39 +11,55 @@ package model;
  */
 public class ADSREnveloppe {
 	
-	private double attackMs, decayMs, sustainLevel, releaseMs;
+	protected final List<SynthParameter<?>> parameterList = new ArrayList<SynthParameter<?>>();
+	private DoubleParameter attackMs, decayMs, sustainLevel, releaseMs;
 	//what about attackLevel or decayLevel ?
 
-	public double getAttackMs() {
+	public ADSREnveloppe() {
+		attackMs = new DoubleParameter("Attack");
+		decayMs = new DoubleParameter("Decay");
+		sustainLevel = new DoubleParameter("Sustain");
+		releaseMs = new DoubleParameter("Release");
+		parameterList.add(attackMs);
+		parameterList.add(decayMs);
+		parameterList.add(sustainLevel);
+		parameterList.add(releaseMs);
+	}
+	
+	public DoubleParameter getAttackMs() {
 		return attackMs;
 	}
 
-	public void setAttackMs(double attackMs) {
+	public void setAttackMs(DoubleParameter attackMs) {
 		this.attackMs = attackMs;
 	}
 
-	public double getDecayMs() {
+	public DoubleParameter getDecayMs() {
 		return decayMs;
 	}
 
-	public void setDecayMs(double decayMs) {
+	public void setDecayMs(DoubleParameter decayMs) {
 		this.decayMs = decayMs;
 	}
 
-	public double getSustainLevel() {
+	public DoubleParameter getSustainLevel() {
 		return sustainLevel;
 	}
 
-	public void setSustainLevel(double sustainLevel) {
+	public void setSustainLevel(DoubleParameter sustainLevel) {
 		this.sustainLevel = sustainLevel;
 	}
 
-	public double getReleaseMs() {
+	public DoubleParameter getReleaseMs() {
 		return releaseMs;
 	}
 
-	public void setReleaseMs(double releaseMs) {
+	public void setReleaseMs(DoubleParameter releaseMs) {
 		this.releaseMs = releaseMs;
+	}
+
+	public List<SynthParameter<?>> getParameters() {
+		return parameterList;
 	}
 	
 	

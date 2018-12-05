@@ -6,6 +6,7 @@ import javafx.scene.*;
 import view.*;
 import model.*;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 //import javafx.geometry.Pos;
 //import javafx.application.Preloader;
 import javafx.stage.Stage;
@@ -33,16 +34,27 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage window) throws Exception {
-	
-        GridPane layout = new GridPane();
-        layout.setStyle("-fx-background-color: black;");
-        layout.setHgap(10);
-        layout.setVgap(10);
-        //layout.setPadding(new Insets(0, 10, 0, 10));
+		
+		BorderPane layout = new BorderPane();
+		layout.setStyle("-fx-background-color: #222;");
+        layout.setPadding(new Insets(10));
         
-        BorderPane screen = new BorderPane();
-        screen.setStyle("-fx-border-color : grey");
+        GridPane encoders = new GridPane();
+        //encoders.setStyle("-fx-background-color: black;");
+        encoders.setHgap(10);
+        encoders.setVgap(10);
+        
+        GridPane pads = new GridPane();
+        pads.setPadding(new Insets(80));
+        pads.setHgap(10);
+        pads.setVgap(10);
+        
+        AnchorPane screen = new AnchorPane();
+        AnchorPane.setLeftAnchor(screen, 410.0);
+        AnchorPane.setLeftAnchor(screen, 230.0);
+        
         ImageView iv1 = new ImageView(new Image("resources/img/logo.png"));
+        iv1.setStyle("-fx-border-color : grey");
         screen.getChildren().add(iv1);
         
         GridPane buttonGroup1 = new GridPane();
@@ -50,6 +62,8 @@ public class Main extends Application {
         		+"-fx-border-color: magenta;");
         buttonGroup1.setHgap(10);
         buttonGroup1.setVgap(10);
+        buttonGroup1.setMinSize(250,200);
+        buttonGroup1.setMaxSize(250,200);
         buttonGroup1.setPadding(new Insets(0, 10, 0, 10));
         
         GridPane buttonGroup2 = new GridPane();
@@ -57,6 +71,8 @@ public class Main extends Application {
         		+"-fx-border-color: magenta;");
         buttonGroup2.setHgap(10);
         buttonGroup2.setVgap(10);
+        buttonGroup2.setMinSize(250,200);
+        buttonGroup2.setMaxSize(250,200);
         buttonGroup2.setPadding(new Insets(0, 10, 0, 10));
         
         GridPane buttonGroup3 = new GridPane();
@@ -64,6 +80,8 @@ public class Main extends Application {
         		+"-fx-border-color: cyan;");
         buttonGroup3.setHgap(10);
         buttonGroup3.setVgap(10);
+        buttonGroup3.setMinSize(250,200);
+        buttonGroup3.setMaxSize(250,200);
         buttonGroup3.setPadding(new Insets(0, 10, 0, 10));
         
         GridPane buttonGroup4 = new GridPane();
@@ -71,6 +89,8 @@ public class Main extends Application {
         		+"-fx-border-color: yellow;");
         buttonGroup4.setHgap(10);
         buttonGroup4.setVgap(10);
+        buttonGroup4.setMinSize(250,200);
+        buttonGroup4.setMaxSize(250,200);
         buttonGroup4.setPadding(new Insets(0, 10, 0, 10));
         
         GridPane buttonGroup5 = new GridPane();
@@ -78,18 +98,31 @@ public class Main extends Application {
         		+"-fx-border-color: yellow;");
         buttonGroup5.setHgap(10);
         buttonGroup5.setVgap(10);
+        buttonGroup5.setMinSize(250,200);
+        buttonGroup5.setMaxSize(250,200);
         buttonGroup5.setPadding(new Insets(0, 10, 0, 10));
+        
+        GridPane buttonGroup6 = new GridPane();
+        buttonGroup6.setStyle("-fx-background-color: black;"
+        		+"-fx-border-color: magenta;");
+        buttonGroup6.setHgap(10);
+        buttonGroup6.setVgap(10);
+        buttonGroup6.setMinSize(250,200);
+        buttonGroup6.setMaxSize(250,200);
+        buttonGroup6.setPadding(new Insets(0, 10, 0, 10));
  
 		VcoCEM3340 vco1 = new VcoCEM3340();
 		VcoLM13700 vco2 = new VcoLM13700();
 		MixerV2140D mixer = new MixerV2140D();
 		VcfCEM3320 vcf = new VcfCEM3320();
 		VcaLM13700 vca = new VcaLM13700();
+		ADSREnveloppe adsr = new ADSREnveloppe();
 		List<SynthParameter<?>> paramsVCO1 = vco1.getParameters();
 		List<SynthParameter<?>> paramsVCO2 = vco2.getParameters();
 		List<SynthParameter<?>> paramsMixer = mixer.getParameters();
 		List<SynthParameter<?>> paramsVcf = vcf.getParameters();
 		List<SynthParameter<?>> paramsVca = vca.getParameters();
+		List<SynthParameter<?>> paramsAdsr = adsr.getParameters();
 		
 		int i=0;
 		for (SynthParameter<?> p : paramsVCO1) {
@@ -166,13 +199,45 @@ public class Main extends Application {
 			//layout.add(lbl,i,1);
 			buttonGroup5.add(label,i,2);
 		}
+		i=0;
+		for (SynthParameter<?> p : paramsAdsr) {
+			i=i+1;
+			Label title = new Label("ADSR");
+			title.setStyle("-fx-text-fill: magenta;");
+			Label label = new Label(p.getLabel());
+			label.setStyle("-fx-text-fill: lightpink;");
+			Control c = p.getControl();
+			System.out.println(p);
+			Node n = c.getJavaFXView();
+			buttonGroup6.add(title,2,0);
+			buttonGroup6.add(n,i,1);
+			//layout.add(lbl,i,1);
+			buttonGroup6.add(label,i,2);
+		}		
+		i=0;
+	    for(int x = 0; x <8; x++){
+	    	for(int y = 0; y <4; y++){
+	           	i=i+1;
+	           	Button butt = new Button();
+	           	butt.setMinSize(70.0,70.0);
+	           	butt.setStyle("-fx-background-color : white;");
+	           	pads.add(butt,x,y);
+	        }
+	    }
+	           		
 		
-		layout.add(buttonGroup1,0,0);
-		layout.add(buttonGroup2,0,1);
-		layout.add(buttonGroup3,0,2);
-		layout.add(buttonGroup4,1,0);
-		layout.add(buttonGroup5,1,1);
-		Scene s = new Scene(layout, 1280,720);
+		encoders.add(buttonGroup1,0,0);
+		encoders.add(buttonGroup2,1,0);
+		encoders.add(buttonGroup3,2,0);
+		encoders.add(buttonGroup4,0,1);
+		encoders.add(buttonGroup5,1,1);
+		encoders.add(buttonGroup6,2,1);
+
+	    layout.setBottom(encoders);
+	    layout.setLeft(screen);
+	    layout.setRight(pads);
+		//layout.getChildren().add(encoders);
+		Scene s = new Scene(layout, 1600,910);
 		window.setScene(s);
 		window.setTitle("Pulsar");
 		window.setResizable(true);
@@ -335,4 +400,3 @@ public class Main extends Application {
 		
 	}*/
 }
-

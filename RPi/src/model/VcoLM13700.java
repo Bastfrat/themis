@@ -21,7 +21,7 @@ public class VcoLM13700 extends Vco {
 	
 	public VcoLM13700() {
 		super();
-		shape = new EnumParameter<WaveShape>("WaveShape");
+		shape = new EnumParameter<WaveShape>("Shape");
 		parameterList.add(shape);
 		// TODO : syncFrom13700
 	}
