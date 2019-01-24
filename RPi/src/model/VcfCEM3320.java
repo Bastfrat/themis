@@ -3,16 +3,23 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class instantiate every parameters of a VCA type module and create a list of those parameters
+ * As long as there is one type of VCA every of its parameters is set here.
+ * 
+ * @author Bastien Fratta
+ */
+
 public class VcfCEM3320 {
 
 	private DoubleParameter cutoff, egDepth, kbdTracking, resonance;
 	protected final List<SynthParameter<?>> parameterList = new ArrayList<SynthParameter<?>>();
 	
 	public VcfCEM3320() {
-		cutoff = new DoubleParameter("Cutoff");
-		resonance = new DoubleParameter("Reso");
-		kbdTracking = new DoubleParameter("Keyboard");
-		egDepth = new DoubleParameter("EG.Depth");
+		cutoff = new DoubleParameter("Cutoff", 0, 1, 0.01);
+		resonance = new DoubleParameter("Reso", 0, 1, 0.01);
+		kbdTracking = new DoubleParameter("Keyboard", 0, 1, 0.01);
+		egDepth = new DoubleParameter("EG.Depth", 0, 1, 0.01);
 		parameterList.add(cutoff);
 		parameterList.add(resonance);
 		parameterList.add(kbdTracking);

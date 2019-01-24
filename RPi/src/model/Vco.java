@@ -1,31 +1,30 @@
 package model;
 
 import java.util.*;
-
 //import controller.FrontPane;
 //import controller.PerformancePad;
 //import controller.component.Control;
 //import controller.component.PushButton;
 import controller.event.PushButtonActionEvent;
 import controller.event.PushButtonActionListener;
+import model.Octave;
 
 /**
+ * This class instantiate every parameters of a VCO type module and create a list of those parameters
+ * The basic controls such as Octave and fine tuning and many more are set here.
+ * It is completed by the 2 classes VcoCEM3340 and VxoLM13700 which add more specific controls for those VCOs.
  * 
  * @author Bastien Fratta
- *
  */
-public abstract class Vco implements PushButtonActionListener, SynthParameterProvider {
+
+public abstract class Vco extends AbstractModel implements PushButtonActionListener {
 	
 	protected DoubleParameter detune;
 	protected EnumParameter<Octave> octave;
-	protected final List<SynthParameter<?>> parameterList = new ArrayList<SynthParameter<?>>();
 	
-	/**
-	 * 
-	 */
 	public Vco(){
-		detune = new DoubleParameter("Detune");
-		octave = new EnumParameter<Octave>("Octave");
+		detune = new DoubleParameter("Detune", 0, 0, 0);
+		octave = new EnumParameter(Octave.class, "Octave");
 		parameterList.add(detune);
 		parameterList.add(octave);
 

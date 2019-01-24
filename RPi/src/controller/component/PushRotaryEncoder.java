@@ -1,6 +1,9 @@
 package controller.component;
 
 import controller.event.*;
+
+import javafx.geometry.Orientation;
+
 import javafx.scene.*;
 import javafx.scene.control.*;
 
@@ -29,9 +32,8 @@ public class PushRotaryEncoder extends AbstractRotaryEncoder {
 	 * event type. The event instance is lazily created using the parameters passed
 	 * into the fire method.
 	 *
-	 * To be called from Pi4J code
 	 */
-	protected void fireEncoderPushedEvent() {
+	protected void fireEncoderPushedEvent(boolean state) {
 
 		// Guaranteed to return a non-null array
 		Object[] listeners = listenerList.getListenerList();
@@ -43,7 +45,7 @@ public class PushRotaryEncoder extends AbstractRotaryEncoder {
 			if (listeners[i] == PushButtonActionListener.class) {
 				// Lazily create the event:
 				if (e == null)
-					e = new PushButtonActionEvent(this);
+					e = new PushButtonActionEvent(this, state);
 				((PushButtonActionListener) listeners[i + 1]).actionPerformed(e); // TODO (reynal) fire changes on EDT!
 			}
 		}
@@ -52,10 +54,22 @@ public class PushRotaryEncoder extends AbstractRotaryEncoder {
 	@Override
 	public Node createJavaFXView() {
 		Group g = new Group();
-		//g.getChildren().addAll(super.createJavaFXView());
-		//g.getChildren().addAll(new Button(label));		
+		Slider slider = new Slider(0, 1, 0.5);
+		slider.setOrientation(Orientation.VERTICAL);
+		slider.setShowTickMarks(true);
+		slider.setShowTickLabels(true);
+		slider.setMajorTickUnit(0.25f);
+		slider.setBlockIncrement(0.1f);		
+		g.getChildren().addAll(slider);
+		g.getChildren().addAll(new Button());		
 		return g;
 		
+	}
+
+	@Override
+	public Node getJavaFXView() {
+		// TODO Auto-generated method stub
+		return null;
 	} 
 	
 }

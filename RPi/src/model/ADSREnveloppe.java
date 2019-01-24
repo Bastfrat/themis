@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Contains the parameters for an ADSR enveloppe, Attack, Decay, Sustain, Release
- *
- * @author sydxrey
- *
+ * This class instantiate every parameters of a ADSR type module and create a list of those parameters
+ * As long as there is one type of ADSR every of its parameters is set here.
+ * 
+ * @author Bastien Fratta
  */
+
 public class ADSREnveloppe {
 	
 	protected final List<SynthParameter<?>> parameterList = new ArrayList<SynthParameter<?>>();
@@ -16,10 +17,10 @@ public class ADSREnveloppe {
 	//what about attackLevel or decayLevel ?
 
 	public ADSREnveloppe() {
-		attackMs = new DoubleParameter("Attack");
-		decayMs = new DoubleParameter("Decay");
-		sustainLevel = new DoubleParameter("Sustain");
-		releaseMs = new DoubleParameter("Release");
+		attackMs = new DoubleParameter("Attack", 0, 200, 0.1);
+		decayMs = new DoubleParameter("Decay", 0, 0, 0);
+		sustainLevel = new DoubleParameter("Sustain", 0, 0, 0);
+		releaseMs = new DoubleParameter("Release", 0, 0, 0);
 		parameterList.add(attackMs);
 		parameterList.add(decayMs);
 		parameterList.add(sustainLevel);

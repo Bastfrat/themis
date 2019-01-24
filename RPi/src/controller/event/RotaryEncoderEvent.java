@@ -2,17 +2,26 @@ package controller.event;
 
 import java.util.EventObject;
 
+/**
+ * Gives informations about how a rotaryEncoder control is changed (direction, speed..)
+ * This package is the link between messages from the SPI bus and the Controller package
+ */
+
 import controller.component.RotaryEncoderDirection;
 
 public class RotaryEncoderEvent extends EventObject {
 
 	private static final long serialVersionUID = 1L;
 	
-	long encoderValue;
 	RotaryEncoderDirection direction;
 
-	public RotaryEncoderEvent(Object source) {
+	public RotaryEncoderEvent(Object source, RotaryEncoderDirection direction) {
 		super(source);
-		// TODO Auto-generated constructor stub
-}
+		this.direction = direction;
+	}
+	
+	public RotaryEncoderDirection getDirection() {
+		return direction;
+	}
+	
 }

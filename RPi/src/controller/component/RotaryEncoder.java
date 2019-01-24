@@ -1,10 +1,5 @@
 package controller.component;
 
-import javax.swing.event.EventListenerList;
-
-import controller.*;
-import controller.event.RotaryEncoderChangeListener;
-import controller.event.RotaryEncoderEvent;
 import javafx.scene.Node;
 
 public class RotaryEncoder extends AbstractRotaryEncoder {
@@ -14,14 +9,14 @@ public class RotaryEncoder extends AbstractRotaryEncoder {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
+	//@Override
 	public Node getJavaFXView() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	Node createJavaFXView() {
+	public Node createJavaFXView() {
 		// TODO Auto-generated method stub
 		return null;
 	}

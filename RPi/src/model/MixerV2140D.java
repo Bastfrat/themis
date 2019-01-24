@@ -3,6 +3,12 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class instantiate every parameters of a Mixer type module and create a list of those parameters
+ * The 4 parameters are about 4 channels gains (VCO1,VCO2,Sub and noise)
+ * 
+ * @author Bastien Fratta
+ */
 public class MixerV2140D {
 
 	private DoubleParameter gain1dB;
@@ -12,10 +18,10 @@ public class MixerV2140D {
 	protected final List<SynthParameter<?>> parameterList = new ArrayList<SynthParameter<?>>();
 	
 	public MixerV2140D(){
-		gain1dB = new DoubleParameter("VCO1");
-		gain2dB = new DoubleParameter("VCO2");
-		gain3dB = new DoubleParameter("Sub");
-		gain4dB = new DoubleParameter("Noize");
+		gain1dB = new DoubleParameter("VCO1", 0, 0, 0);
+		gain2dB = new DoubleParameter("VCO2", 0, 0, 0);
+		gain3dB = new DoubleParameter("Sub", 0, 0, 0);
+		gain4dB = new DoubleParameter("Noize", 0, 0, 0);
 		parameterList.add(gain1dB);
 		parameterList.add(gain2dB);
 		parameterList.add(gain3dB);
